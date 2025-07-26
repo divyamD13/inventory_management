@@ -5,10 +5,11 @@ This is a full-stack inventory management application built with a Node.js backe
 ## Project Structure
 
 The project is organized into a monorepo structure with two main directories:
-
+```bash
 /inventory-management
 ├── backend/        # Node.js, Express, MongoDB
 └── frontend/       # Vite, React, Tailwind CSS
+```
 
 
 ---
