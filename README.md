@@ -11,82 +11,115 @@ The project is organized into a monorepo structure with two main directories:
 └── frontend/       # Vite, React, Tailwind CSS
 ```
 
+## Docker Setup (Recommended)
+This is the easiest way to run the entire application, including the database, with a single command.
 
----
-## Backend Setup
+# Prerequisites
+Docker and Docker Compose must be installed and running on your machine.
 
+# Running the Application
+Navigate to the root directory of the project:
+
+```bash
+cd inventory-management
+```
+
+Build and start all services using Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+This command will build the Docker images for the frontend and backend, start the containers, and run the application.
+
+## Accessing the Application
+Frontend URL: http://localhost:5173
+
+Backend API URL: http://localhost:8080
+
+## Stopping the Application
+Press Ctrl + C in the terminal where Docker Compose is running.
+
+To remove the containers and network, run:
+
+```bash
+docker-compose down
+```
+
+## Backend Setup (Manual)
 The backend is a Node.js server using the Express framework and MongoDB for the database.
 
-### **A Note on Backend Development**
-
+# A Note on Backend Development
 The backend for this project, including the database schema, API design, and server-side logic, was developed by me.
 
-### **Prerequisites**
+# Prerequisites
+Node.js (v20.x or higher recommended)
 
-* **Node.js** (v20.x or higher recommended)
-* **MongoDB**: A running instance of MongoDB is required. You can use a local installation or a cloud service like MongoDB Atlas.
+MongoDB: A running instance of MongoDB is required. You can use a local installation or a cloud service like MongoDB Atlas.
 
-### **Installation & Setup**
+# Installation & Setup
+Navigate to the backend directory:
 
-1.  **Navigate to the backend directory:**
-    ```bash
-    cd inventory-management/backend
-    ```
+```bash
+cd inventory-management/backend
+```
+# Install dependencies:
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
+# Create an Environment File:
+Create a file named .env in the backend directory and add the following configuration variables. Replace the placeholder values with your actual database credentials.
 
-3.  **Create an Environment File:**
-    Create a file named `.env` in the `backend` directory and add the following configuration variables. **Replace the placeholder values with your actual database credentials.**
+#Code snippet
+```bash
+PORT=8080
+MONGO_URI=mongodb+srv://<username>:<password>@your_cluster_url/inventoryDB?retryWrites=true&w=majority
+JWT_SECRET=a_strong_and_secret_key_for_jwt
+```
 
-    ```env
-    PORT=8080
-    MONGO_URI=mongodb+srv://<username>:<password>@your_cluster_url/inventoryDB?retryWrites=true&w=majority
-    JWT_SECRET=a_strong_and_secret_key_for_jwt
-    ```
+# Start the Backend Server:
 
-4.  **Start the Backend Server:**
-    ```bash
-    npm start
-    ```
-    The server should now be running at `http://localhost:8080`.
+```bash
+npm start
+```
 
----
-## Frontend Setup
+The server should now be running at http://localhost:8080.
 
+# Frontend Setup (Manual)
 The frontend is a modern web application built with Vite, React, and styled with Tailwind CSS.
 
-### **A Note on Frontend Development**
-
+# A Note on Frontend Development
 The frontend for this project was generated with the assistance of AI / Large Language Models (LLMs) to quickly build a responsive and functional user interface based on the backend API specifications.
 
-### **Prerequisites**
+# Prerequisites
+Node.js (v20.x or higher recommended)
 
-* **Node.js** (v20.x or higher recommended)
+Installation & Setup
+Navigate to the frontend directory:
 
-### **Installation & Setup**
+```bash
+cd inventory-management/frontend
+```
 
-1.  **Navigate to the frontend directory:**
-    ```bash
-    cd inventory-management/frontend
-    ```
+# Install dependencies:
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
 
-3.  **Create an Environment File:**
-    Create a file named `.env` in the `frontend` directory. This file tells the frontend where to find the backend API.
+# Create an Environment File:
+Create a file named .env in the frontend directory. This file tells the frontend where to find the backend API.
 
-    ```env
-    VITE_API_BASE_URL=http://localhost:8080
-    ```
+# Code snippet
+```bash
+VITE_API_BASE_URL=http://localhost:8080
+```
 
-4.  **Start the Frontend Development Server:**
-    ```bash
-    npm run dev
-    ```
-    The application will be accessible in your browser, typically at `http://localhost:5173`.
+# Start the Frontend Development Server:
+
+```bash
+npm run dev
+```
+
+The application will be accessible in your browser, typically at http://localhost:5173.

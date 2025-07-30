@@ -1,0 +1,36 @@
+
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # Backend Service
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      # This MONGO_URI points to the 'mongo' service name within the Docker network
+      MONGO_URI: mongodb://mongo:27017/inventoryDB
+      JWT_SECRET: your_super_secret_jwt_key
+      PORT: 8080
+    depends_on:
+      - mongo
+
+  # Frontend Service
+  frontend:
+    build: ./frontend
+    ports:
+      # Map host port 5173 to the container's port 80 (where Nginx is listening)
+      - "5173:80"
+    depends_on:
+      - backend
+
+# Define a named volume for persisting MongoDB data
+volumes:
+  mongo-data:
